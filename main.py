@@ -1,7 +1,6 @@
-
+from selenium import webdriver
 from bs4 import BeautifulSoup
 from twilio.rest import Client
-from selenium import webdriver
 import schedule
 import time
 from email.mime.multipart import MIMEMultipart
@@ -42,6 +41,7 @@ class MyTask:
             rows = table.find_all('tr')
             self.get_data(rows)
         except Exception as error:
+            print(error)
             self.error_send(error)
 
 
@@ -63,18 +63,20 @@ class MyTask:
                 f'SAGAR:{sagar[1].get_text().strip()}\nRS:{sagar[5].get_text().strip()}\nSHIVAMOGGA:{shimoga[1].get_text().strip()}\nRS:{shimoga[5].get_text().strip()}')
             self.send_message(message)
         except Exception as error:
+            print(error)
             self.error_send(error)
 
 
     def send_message(self, message):
         try:
             SID = 'AC82489ab4391dd62ef168df8fc3e2159d'
-            AUTH_TOKEN = 'e2e16a97ac91b2379f36b5bf005a2949'
+            AUTH_TOKEN = '37abf777c3e93ae6446aee51834d99c3'
 
             cl = Client(SID, AUTH_TOKEN)
 
             cl.messages.create(body=f"{message}", from_='+12293983881', to='+91 93808 87409')
         except Exception as error:
+            print(error)
             self.error_send(error)
 
 
@@ -87,5 +89,3 @@ if __name__ == "__main__":
     while True:
         schedule.run_pending()
         time.sleep(1)
-
-
