@@ -2,3 +2,7 @@ beautifulsoup4
 bs4
 selenium==4.11.2
 twilio
+schedule
+time
+smtplib
+
