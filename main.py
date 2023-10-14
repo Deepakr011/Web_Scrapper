@@ -11,7 +11,9 @@ scheduler = BackgroundScheduler(max_instances=1)  # Set max_instances to 1
 
 # Define a function to run the task
 def send_message_job():
+    print("hello")
     my_task.get_HTML()
+    
 
 # Schedule the job to run every 20 seconds
 scheduler.add_job(send_message_job, 'interval', seconds=20)
