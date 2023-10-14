@@ -3,7 +3,7 @@ from Areca_price_update import MyTask
 from flask import Flask
 import threading
 
-# Create an instance of the MyTask class
+
 my_task = MyTask()
 
 # Create a scheduler
