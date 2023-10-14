@@ -65,7 +65,7 @@ class MyTask:
 
             cl = Client(SID, AUTH_TOKEN)
 
-            cl.messages.create(body=f"{message}", from_='+12293983881', to='+91 93808 87409')
+            cl.messages.create(body=f"{message}", from_='+12293983881', to='+91 80882 81469')
         except Exception as error:
             print(error)
             self.error_send(error)
