@@ -15,7 +15,7 @@ def send_message_job():
     my_task.get_HTML()
 
 # Schedule the job to run every 2 minutes
-scheduler.add_job(send_message_job, trigger="cron",minute=5)
+scheduler.add_job(send_message_job, trigger="cron",second=10)
 
 # Start the scheduler in a separate thread
 scheduler_thread = threading.Thread(target=scheduler.start)
