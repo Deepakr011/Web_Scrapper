@@ -1,5 +1,5 @@
-import apscheduler.schedulers.background
-from price import MyTask
+from apscheduler.schedulers.background import BackgroundScheduler
+from Areca_price_update import MyTask
 from flask import Flask
 import threading
 
@@ -7,15 +7,14 @@ import threading
 my_task = MyTask()
 
 # Create a scheduler
-scheduler = apscheduler.schedulers.background.BackgroundScheduler({'apscheduler.job_defaults.max_instances': 2})
-
+scheduler = BackgroundScheduler()
 
 # Define a function to run the task
 def send_message_job():
     my_task.get_HTML()
 
-# Schedule the job to run every 2 minutes
-scheduler.add_job(send_message_job, trigger="cron",minute=1)
+# Schedule the job to run daily at 8 am
+scheduler.add_job(send_message_job, 'cron', hour=8, minute=0)
 
 # Start the scheduler in a separate thread
 scheduler_thread = threading.Thread(target=scheduler.start)
@@ -29,7 +28,7 @@ app = Flask(__name__)
 def hello():
     return "Hello, this is your Flask server!"
 
-# Run the Flask app on a specific port
 if __name__ == '__main__':
+    # Start the Flask app after the scheduler is initialized
     app.run(host='0.0.0.0', port=5000)
     print("Flask server started successfully!")
