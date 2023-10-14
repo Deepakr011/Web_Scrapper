@@ -1,6 +1,7 @@
-from selenium import webdriver
+
 from bs4 import BeautifulSoup
 from twilio.rest import Client
+from selenium import webdriver
 import schedule
 import time
 from email.mime.multipart import MIMEMultipart
