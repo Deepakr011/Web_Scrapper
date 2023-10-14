@@ -1,5 +1,5 @@
 from apscheduler.schedulers.background import BackgroundScheduler
-from Areca_price_update import MyTask
+from price import MyTask
 from flask import Flask
 import threading
 
