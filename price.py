@@ -1,8 +1,6 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from twilio.rest import Client
-import schedule
-import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
@@ -28,7 +26,7 @@ class MyTask:
         server.quit()
     def get_HTML(self):
         try:
-            chromedriver_path = r"./chromedriver.exe"
+            chromedriver_path =r"E:\Downloads\chromedriver-win64 (1)\chromedriver-win64\chromedriver.exe"
             options = webdriver.ChromeOptions()
             options.add_argument('--headless')
             driver = webdriver.Chrome(executable_path=chromedriver_path, options=options)
