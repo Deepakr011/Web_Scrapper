@@ -1,8 +1,8 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from twilio.rest import Client
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+import schedule
+import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
@@ -28,9 +28,10 @@ class MyTask:
         server.quit()
     def get_HTML(self):
         try:
-            options = Options()
-            options.headless = True
-            driver = webdriver.Chrome(options=options)
+            chromedriver_path = r"./chromedriver.exe"
+            options = webdriver.ChromeOptions()
+            options.add_argument('--headless')
+            driver = webdriver.Chrome(executable_path=chromedriver_path, options=options)
             url = 'https://www.krishimaratavahini.kar.nic.in/MainPage/DailyMrktPriceRep2.aspx?Rep=Com&CommCode=140&VarCode=1&Date=12/10/2018&CommName=Arecanut%20/%20%E0%B2%85%E0%B2%A1%E0%B2%BF%E0%B2%95%E0%B3%86&VarName=Red%20/%20%E0%B2%95%E0%B3%86%E0%B2%82%E0%B2%AA%E0%B3%81'
             driver.get(url)
             soup = BeautifulSoup(driver.page_source, 'html.parser')
