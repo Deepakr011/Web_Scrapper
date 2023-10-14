@@ -1,4 +1,4 @@
-from apscheduler.schedulers.background import BackgroundScheduler
+import apscheduler.schedulers.background
 from price import MyTask
 from flask import Flask
 import threading
@@ -7,15 +7,14 @@ import threading
 my_task = MyTask()
 
 # Create a scheduler
-scheduler = BackgroundScheduler(max_instances=1)  # Set max_instances to 1
+scheduler = apscheduler.schedulers.background.BackgroundScheduler({'apscheduler.job_defaults.max_instances': 2})
+
 
 # Define a function to run the task
 def send_message_job():
-    print("hello")
     my_task.get_HTML()
-    
 
-# Schedule the job to run every 20 seconds
+# Schedule the job to run every 2 minutes
 scheduler.add_job(send_message_job, 'interval', seconds=20)
 
 # Start the scheduler in a separate thread
@@ -30,7 +29,7 @@ app = Flask(__name__)
 def hello():
     return "Hello, this is your Flask server!"
 
+# Run the Flask app on a specific port
 if __name__ == '__main__':
-    # Start the Flask app after the scheduler is initialized
     app.run(host='0.0.0.0', port=5000)
     print("Flask server started successfully!")
