@@ -26,7 +26,6 @@ class MyTask:
         server.quit()
     def get_HTML(self):
         try:
-            import requests
             url = "https://www.krishimaratavahini.kar.nic.in/MainPage/DailyMrktPriceRep2.aspx?Rep=Com&CommCode=140&VarCode=1&Date=12/10/2018&CommName=Arecanut%20/%20%E0%B2%85%E0%B2%A1%E0%B2%BF%E0%B2%95%E0%B3%86&VarName=Red%20/%20%E0%B2%95%E0%B3%86%E0%B2%82%E0%B2%AA%E0%B3%81"
             response = requests.get(url)
             soup = BeautifulSoup(response.text, "html.parser")
@@ -34,7 +33,7 @@ class MyTask:
             rows = table.find_all('tr')
             self.get_data(rows)
         except Exception as error:
-            print(error)
+            print(f"http_error{error}")
             self.error_send(error)
 
     def get_data(self, rows):
@@ -59,9 +58,10 @@ class MyTask:
 
 
     def send_message(self, message):
+        print("in message function")
         try:
             SID = 'AC82489ab4391dd62ef168df8fc3e2159d'
-            AUTH_TOKEN = '37abf777c3e93ae6446aee51834d99c3'
+            AUTH_TOKEN = 'a966b35e59596bc6f371f9341badf11c'
 
             cl = Client(SID, AUTH_TOKEN)
 
