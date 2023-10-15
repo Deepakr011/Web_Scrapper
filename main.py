@@ -17,7 +17,7 @@ my_task = MyTask()
 
 # Calculate the initial start time for today at 1:45 PM
 now = datetime.now()
-initial_start_time = now.replace(hour=15, minute=30, second=0, microsecond=0)
+initial_start_time = now.replace(hour=18, minute=5, second=0, microsecond=0)
 
 # Create a scheduler
 scheduler = BackgroundScheduler()
