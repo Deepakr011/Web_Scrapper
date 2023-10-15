@@ -3,7 +3,7 @@ from apscheduler.triggers.cron import CronTrigger
 from flask import Flask
 import threading
 from datetime import datetime
-from Areca_price_update import MyTask
+from price import MyTask
 
 # Create a Flask app for the HTTP server
 app = Flask(__name__)
