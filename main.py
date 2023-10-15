@@ -1,7 +1,7 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from flask import Flask
-from Areca_price_update import MyTask
+from price import MyTask
 import threading
 
 # Create a Flask app for the HTTP server
