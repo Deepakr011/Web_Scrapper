@@ -46,6 +46,7 @@ async function fetchData() {
     }
     fetchData();
   } catch (error) {
+    console.log(error.message);
     await sendGmail("magowtham7@gmail.com", error.message);
   }
 }
@@ -55,8 +56,8 @@ function timeSheduler() {
     now.getFullYear(),
     now.getMonth(),
     now.getDate(),
-    1,
-    50,
+    2,
+    15,
     0
   );
   let delay = targetDate - now;
