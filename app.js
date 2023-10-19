@@ -56,7 +56,7 @@ function timeSheduler() {
     now.getMonth(),
     now.getDate(),
     1,
-    3,
+    50,
     0
   );
   let delay = targetDate - now;
