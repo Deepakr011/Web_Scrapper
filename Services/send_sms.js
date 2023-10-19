@@ -6,7 +6,7 @@ module.exports = async function (message) {
   try {
     const result = await client.messages.create({
       body: message,
-      from: "+12295365102",
+      from: "+12293983881",
       to: "+918088281469",
     });
     result.status = true;
