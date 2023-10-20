@@ -6,14 +6,11 @@ module.exports = async function (message) {
   try {
     const result = await client.messages.create({
       body: message,
-      from: "+12293983881",
+      from: "+12295365102",
       to: "+918088281469",
     });
-    result.status = true;
-    result.messageSid = message.sid;
   } catch (error) {
-    result.status = false;
-    result.error = error.message;
+    throw new Error(error.message);
   }
 
   return result;

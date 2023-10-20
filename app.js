@@ -1,4 +1,5 @@
 const { application } = require("express");
+const axios = require("axios");
 const cheerio = require("cheerio");
 require("dotenv").config();
 const sendSMS = require("./Services/send_sms");
@@ -33,18 +34,16 @@ function dataExtracter(html, market) {
 }
 
 async function fetchData() {
+  console.log("fetch called");
   try {
-    const response = await fetch(process.env.KRISHI_MARKET_URL);
-    const html = await response.text();
+    const response = await axios.get(process.env.KRISHI_MARKET_URL);
+    const html = response.data;
     const message = `${dataExtracter(html, "SAGAR")}\n${dataExtracter(
       html,
       "SHIVAMOGGA"
     )}`;
-    const smsResult = await sendSMS(message);
-    if (!smsResult.status) {
-      throw new Error(smsResult.error);
-    }
-    fetchData();
+    console.log(message);
+    await sendSMS(message);
   } catch (error) {
     console.log(error.message);
     await sendGmail("magowtham7@gmail.com", error.message);
@@ -57,14 +56,14 @@ function timeSheduler() {
     now.getMonth(),
     now.getDate(),
     2,
-    15,
+    39,
     0
   );
   let delay = targetDate - now;
   if (delay < 0) {
     delay += 24 * 60 * 60 * 1000;
   }
-  setTimeout(fetchData, delay);
+  setTimeout(fetchData, 2000);
 }
 timeSheduler();
 application.listen(PORT, () => {
