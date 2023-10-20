@@ -45,7 +45,7 @@ async function fetchData() {
     console.log(message);
     await sendSMS(message);
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
     await sendGmail("magowtham7@gmail.com", error.message);
   }
 }
